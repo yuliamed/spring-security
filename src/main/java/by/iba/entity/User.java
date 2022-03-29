@@ -29,6 +29,10 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
@@ -64,4 +68,7 @@ public class User implements UserDetails {
         return true;
     }
 
+    public String getPasswordConfirm() {
+        return this.passConfirm;
+    }
 }

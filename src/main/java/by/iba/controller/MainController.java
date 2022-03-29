@@ -4,9 +4,9 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-@RestController
+//@RestController
 public class MainController {
-    @GetMapping("/hello")
+ //   @GetMapping("/hello")
     public String hello(){
         return "Fuck you";
     }
