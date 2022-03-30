@@ -17,58 +17,19 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements UserDetails {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
     private String userSurname;
     private String pass;
-    @Transient
-    private String passConfirm;
+
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="user_roles",
+    joinColumns = {@JoinColumn(name="user_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName = "id")})
     private Set<Role> roles;
 
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
-
-    @Override
-    public String getPassword() {
-        return pass;
-    }
-
-    @Override
-    public String getUsername() {
-        return userName;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
-
-    public String getPasswordConfirm() {
-        return this.passConfirm;
-    }
 }
