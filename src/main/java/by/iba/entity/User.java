@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String email;
     private String userName;
     private String userSurname;
     private String pass;
@@ -29,7 +31,7 @@ public class User {
     @JoinTable(name="user_roles",
     joinColumns = {@JoinColumn(name="user_id", referencedColumnName = "id")},
     inverseJoinColumns = {@JoinColumn(name="role_id", referencedColumnName = "id")})
-    private Set<Role> roles;
+    private List<Role> roles;
 
 
 }
